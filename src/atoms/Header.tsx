@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import type { TSize } from "../styles/types";
+import styled from 'styled-components';
+import type { TSize } from '../styles/types';
 
-interface THeader extends React.ComponentPropsWithoutRef<"header"> {
+interface THeader extends React.ComponentPropsWithoutRef<'header'> {
   margin?: TSize;
 }
 
@@ -11,7 +11,7 @@ const StyledHeader = styled.header<THeader>`
       spacing: { margin: themeMargin },
     },
     margin,
-  }) => themeMargin[margin || "s"]};
+  }) => themeMargin[margin || 's']};
 `;
 
 const Title = styled.h1`
@@ -20,6 +20,7 @@ const Title = styled.h1`
       typography: { fontSize },
     },
   }) => fontSize.l};
+  text-align: center;
 `;
 
 export default function Header({ margin, children }: THeader) {

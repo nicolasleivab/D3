@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-interface TCard extends React.ComponentPropsWithoutRef<"div"> {}
+interface TCard extends React.ComponentPropsWithoutRef<'div'> {}
 
 const Card = styled.div<TCard>`
   box-shadow: ${({
@@ -8,11 +8,6 @@ const Card = styled.div<TCard>`
       card: { boxShadow },
     },
   }) => boxShadow};
-  margin: ${({
-    theme: {
-      spacing: { margin: themeMargin },
-    },
-  }) => themeMargin.s};
   padding: ${({
     theme: {
       spacing: { padding: themePadding },

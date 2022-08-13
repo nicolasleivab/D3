@@ -1,7 +1,8 @@
 export const theme = {
   colors: {
     background: "#FFF",
-    foreground: "#CCC",
+    foreground: "#555",
+    focus: "#CCC",
   },
   typography: {
     fontSize: {
@@ -18,7 +19,10 @@ export const theme = {
   },
   card: {
     boxShadow: "5px 3px 2px 5px #CCC",
-    width: "fit-content",
+    width: "100%",
+  },
+  svg: {
+    height: "500px"
   },
   spacing: {
     margin: {
