@@ -5,7 +5,7 @@ export default function HeaderComponent() {
   return (
     <Flex>
       <Block>
-        <Header>D3 Zoom Nodes and Force Simulation</Header>
+        <Header>D3 Nodes and Force Simulation</Header>
       </Block>
     </Flex>
   );

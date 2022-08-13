@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import HeaderComponent from '../components/Header/Header';
+import HeaderComponent from '../modules/Header/Header';
 import { Flex, Block } from '../layout';
-import ZoomNodes from '../components/ZoomNodes/ZoomNodes';
-import ForceSimulation from '../components/ForceSimulation/ForceSimulation';
+import ZoomNodes from '../modules/ZoomNodes/ZoomNodes';
+import ForceSimulation from '../modules/ForceSimulation/ForceSimulation';
 import { baseCSS } from '../styles/base';
 import { theme } from '../styles/theme';
 

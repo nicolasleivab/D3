@@ -1,8 +1,11 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { TSize } from '../styles/types';
+import type { TSize } from '../styles/types';
+
+type TButtonType = 'primary' | 'secondary';
 
 interface TButton extends React.ComponentPropsWithRef<'button'> {
+  buttonType?: TButtonType;
   onClick?: (arg: any) => void;
   borderRadius?: TSize;
 }
@@ -10,19 +13,16 @@ interface TButton extends React.ComponentPropsWithRef<'button'> {
 const StyledButton = styled.button<TButton>`
   background-color: ${({
     theme: {
-      colors: { background },
+      colors: { background, highlight },
     },
-  }) => background};
+    buttonType,
+  }) => (buttonType === 'primary' ? background : highlight)};
   color: ${({
     theme: {
       colors: { foreground },
     },
   }) => foreground};
-  width: ${({
-    theme: {
-      input: { width },
-    },
-  }) => width};
+  width: fit-content;
   border-radius: ${({
     theme: {
       spacing: { border },
@@ -44,9 +44,17 @@ const StyledButton = styled.button<TButton>`
 `;
 
 const Button = forwardRef(
-  ({ children, onClick, borderRadius }: TButton, ref: any) => {
+  (
+    { children, buttonType = 'primary', onClick, borderRadius }: TButton,
+    ref: any
+  ) => {
     return (
-      <StyledButton ref={ref} onClick={onClick} borderRadius={borderRadius}>
+      <StyledButton
+        buttonType={buttonType}
+        ref={ref}
+        onClick={onClick}
+        borderRadius={borderRadius}
+      >
         {children}
       </StyledButton>
     );

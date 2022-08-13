@@ -3,6 +3,7 @@ export const theme = {
     background: "#FFF",
     foreground: "#555",
     focus: "#CCC",
+    highlight: "#7FFFD4"
   },
   typography: {
     fontSize: {
@@ -23,6 +24,15 @@ export const theme = {
   },
   svg: {
     height: "500px"
+  },
+  tooltip: {
+    width: "150px",
+    height: "120px",
+    innerWidth: "120px",
+    margin: 15,
+    radius: 15,
+    fill: '#FFF',
+    stroke: '#555'
   },
   spacing: {
     margin: {
