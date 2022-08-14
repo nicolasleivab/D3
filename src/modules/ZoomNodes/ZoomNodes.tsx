@@ -91,7 +91,11 @@ export default function ZoomNodes() {
             nodes={nodes}
             currentZoomState={currentZoomState}
           />
-          <TooltipContainer hoveredNode={hoveredNode} />
+          <TooltipContainer
+            hoveredNode={hoveredNode}
+            currentZoomState={currentZoomState}
+            wrapperRef={wrapperRef}
+          />
           {!activeNode ? (
             <EventsNodesContainer
               nodes={nodes}
