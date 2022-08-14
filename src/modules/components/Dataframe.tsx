@@ -1,5 +1,5 @@
-import { Title, Button } from '../../atoms';
-import { Flex, Block } from '../../layout';
+import { Title, Button } from "../../atoms";
+import { Flex, Block } from "../../layout";
 
 type TDataframe = {
   datasets: string[];
@@ -18,7 +18,7 @@ const Dataframe = ({ datasets, activeDataSet, title, onClick }: TDataframe) => {
         return (
           <Block key={dataset}>
             <Button
-              buttonType={activeDataSet === dataset ? 'secondary' : 'primary'}
+              buttonType={activeDataSet === dataset ? "secondary" : "primary"}
               onClick={() => onClick(dataset)}
             >
               {dataset}

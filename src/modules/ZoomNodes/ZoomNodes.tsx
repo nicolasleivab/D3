@@ -13,7 +13,9 @@ import { select } from 'd3-selection';
 
 export default function ZoomNodes() {
   const svgRef = useRef<any>(null);
+  const wrapperRef = useRef<any>(null);
   const buttonRef = useRef<any>(null);
+
   const [currentZoomState, setCurrentZoomState] = useState();
   const [hoveredNode, setHoveredNode] = useState<TNode | null>(null);
   const [activeNode, setActiveNode] = useState<TNode | null>(null);
@@ -24,7 +26,10 @@ export default function ZoomNodes() {
     const zoomBehavior = zoom()
       .filter((event: any) => {
         if (event.type === 'wheel') {
-          return event.ctrlKey;
+          return event.ctrlKey && Boolean(!activeNode);
+        }
+        if (event.type === 'dblclick') {
+          return Boolean(!activeNode);
         }
 
         return true;
@@ -46,7 +51,7 @@ export default function ZoomNodes() {
     return () => {
       svg.call(zoom().on('zoom', null));
     };
-  }, []);
+  }, [activeNode]);
 
   const { nodes, onButtonClick, activeDataset } = useDataset({ datasets });
 
@@ -56,15 +61,19 @@ export default function ZoomNodes() {
         datasets={datasets}
         activeDataSet={activeDataset}
         title={'Nodes Datasets:'}
-        onClick={onButtonClick}
+        onClick={(id) => {
+          onButtonClick(id);
+          setActiveNode(null);
+        }}
       />
-      <Card>
+      <Card ref={wrapperRef}>
         <Flex justifyContent='flex-end'>
           <Button ref={buttonRef}>Zoom to Extent</Button>
         </Flex>
 
         <Svg ref={svgRef}>
           <NodesContainer
+            wrapperRef={wrapperRef}
             activeNode={activeNode}
             nodes={nodes}
             currentZoomState={currentZoomState}

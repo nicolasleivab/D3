@@ -7,16 +7,18 @@ type TNodesContainer = {
   activeNode: TNode | null;
   currentZoomState: any;
   nodes: TNode[];
+  wrapperRef: any;
 };
 
 const NodesContainer = ({
   activeNode,
   currentZoomState,
   nodes,
+  wrapperRef,
 }: TNodesContainer) => {
   const filteredNodes = useMemo(
-    () => getFilteredNodes(nodes, activeNode),
-    [nodes, activeNode]
+    () => getFilteredNodes(nodes, activeNode, wrapperRef, currentZoomState),
+    [nodes, activeNode, wrapperRef, currentZoomState]
   );
 
   return (
