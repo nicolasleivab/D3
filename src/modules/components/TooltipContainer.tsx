@@ -1,5 +1,5 @@
-import { Tooltip } from "../../atoms";
-import { TNode } from "../../data/generate-nodes";
+import { Tooltip } from '../../atoms';
+import { TNode } from '../../data/types';
 
 const TooltipContainer = ({ hoveredNode }: { hoveredNode: TNode | null }) => {
   return (

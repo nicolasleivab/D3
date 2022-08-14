@@ -1,10 +1,13 @@
 import { useMemo } from 'react';
-import type { TNode } from '../../data/generate-nodes';
+import type { TNode, TSubNode } from '../../data/types';
 import { getFilteredNodes } from '../data-handlers.ts/get-filtered-nodes';
 import { Circle } from '../../atoms';
+import SubNodesContainer from './SubNodesContainer';
 
 type TNodesContainer = {
   activeNode: TNode | null;
+  activeSubNode: TSubNode | null;
+  setActiveSubNode: (arg0: TSubNode | null) => void;
   currentZoomState: any;
   nodes: TNode[];
   wrapperRef: any;
@@ -12,13 +15,22 @@ type TNodesContainer = {
 
 const NodesContainer = ({
   activeNode,
+  activeSubNode,
+  setActiveSubNode,
   currentZoomState,
   nodes,
   wrapperRef,
 }: TNodesContainer) => {
   const filteredNodes = useMemo(
-    () => getFilteredNodes(nodes, activeNode, wrapperRef, currentZoomState),
-    [nodes, activeNode, wrapperRef, currentZoomState]
+    () =>
+      getFilteredNodes(
+        nodes,
+        activeNode,
+        activeSubNode,
+        wrapperRef,
+        currentZoomState
+      ),
+    [nodes, activeNode, activeSubNode, wrapperRef, currentZoomState]
   );
 
   return (
@@ -26,6 +38,15 @@ const NodesContainer = ({
       {filteredNodes.map(({ id, x, y, color, radius }: TNode) => {
         return <Circle key={id} x={x} y={y} radius={radius} color={color} />;
       })}
+      {activeNode ? (
+        <SubNodesContainer
+          subNodes={filteredNodes[0].subNodes}
+          activeSubNode={activeSubNode}
+          setActiveSubNode={setActiveSubNode}
+          wrapperRef={wrapperRef}
+          currentZoomState={currentZoomState}
+        />
+      ) : null}
     </g>
   );
 };
