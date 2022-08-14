@@ -1,5 +1,5 @@
-import { Header } from '../../atoms';
-import { Flex, Block } from '../../layout';
+import { Header } from "../../atoms";
+import { Flex, Block } from "../../layout";
 
 export default function HeaderComponent() {
   return (

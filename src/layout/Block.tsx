@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import type { TSize } from '../styles/types';
+import styled from "styled-components";
+import type { TSize } from "../styles/types";
 
-interface TBlock extends React.ComponentPropsWithoutRef<'div'> {
+interface TBlock extends React.ComponentPropsWithoutRef<"div"> {
   width?: string;
   flexSize?: TSize;
   margin?: TSize;
@@ -9,25 +9,25 @@ interface TBlock extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 const Block = styled.div<TBlock>`
-  width: ${({ width }) => width || 'auto'}};
+  width: ${({ width }) => width || "auto"}};
   flex: ${({
     theme: {
       flex: { size },
     },
     flexSize,
-  }) => size[flexSize || 's']};
+  }) => size[flexSize || "s"]};
   margin: ${({
     theme: {
       spacing: { margin: themeMargin },
     },
     margin,
-  }) => themeMargin[margin || 's']};
+  }) => themeMargin[margin || "s"]};
   padding: ${({
     theme: {
       spacing: { padding: themePadding },
     },
     padding,
-  }) => themePadding[padding || 's']};
+  }) => themePadding[padding || "s"]};
   @media (max-width: 768px) {
     width: 90%;
   };

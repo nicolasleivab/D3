@@ -1,16 +1,28 @@
-import type { TCircle } from '../../data/generate-circles';
+import { useMemo } from 'react';
+import type { TNode } from '../../data/generate-nodes';
+import { getFilteredNodes } from '../data-handlers.ts/get-filtered-nodes';
 import { Circle } from '../../atoms';
 
 type TNodesContainer = {
+  activeNode: TNode | null;
   currentZoomState: any;
-  circles: TCircle[];
+  nodes: TNode[];
 };
 
-const NodesContainer = ({ currentZoomState, circles }: TNodesContainer) => {
+const NodesContainer = ({
+  activeNode,
+  currentZoomState,
+  nodes,
+}: TNodesContainer) => {
+  const filteredNodes = useMemo(
+    () => getFilteredNodes(nodes, activeNode),
+    [nodes, activeNode]
+  );
+
   return (
     <g transform={currentZoomState}>
-      {circles.map(({ x, y, color, radius, info }: TCircle) => {
-        return <Circle x={x} y={y} radius={radius} color={color} />;
+      {filteredNodes.map(({ id, x, y, color, radius }: TNode) => {
+        return <Circle key={id} x={x} y={y} radius={radius} color={color} />;
       })}
     </g>
   );

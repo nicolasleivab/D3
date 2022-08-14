@@ -8,28 +8,39 @@ import NodesContainer from '../components/NodesContainer';
 import EventsNodesContainer from '../components/EventsNodesContainer';
 import TooltipContainer from '../components/TooltipContainer';
 import useDataset from '../hooks/useDataset';
-import type { TCircle } from '../../data/generate-circles';
+import type { TNode } from '../../data/generate-nodes';
 import { select } from 'd3-selection';
 
 export default function ZoomNodes() {
   const svgRef = useRef<any>(null);
   const buttonRef = useRef<any>(null);
   const [currentZoomState, setCurrentZoomState] = useState();
-  const [hoveredCircle, setHoveredCircle] = useState<TCircle | null>(null);
+  const [hoveredNode, setHoveredNode] = useState<TNode | null>(null);
+  const [activeNode, setActiveNode] = useState<TNode | null>(null);
 
   useEffect(() => {
     const svg: any = select(svgRef.current);
 
-    const zoomBehavior = zoom().on('zoom', (event) => {
-      const zoomState = event.transform;
+    const zoomBehavior = zoom()
+      .filter((event: any) => {
+        if (event.type === 'wheel') {
+          return event.ctrlKey;
+        }
 
-      setCurrentZoomState(zoomState);
-    });
+        return true;
+      })
+      .on('zoom', (event) => {
+        const zoomState = event.transform;
+
+        setCurrentZoomState(zoomState);
+      });
 
     svg.call(zoomBehavior);
 
-    const resetZoom = () =>
+    const resetZoom = () => {
       svg.transition().duration(350).call(zoomBehavior.transform, zoomIdentity);
+      setActiveNode(null);
+    };
     buttonRef.current.onclick = resetZoom;
 
     return () => {
@@ -37,7 +48,7 @@ export default function ZoomNodes() {
     };
   }, []);
 
-  const { circles, onButtonClick, activeDataset } = useDataset({ datasets });
+  const { nodes, onButtonClick, activeDataset } = useDataset({ datasets });
 
   return (
     <Fragment>
@@ -54,15 +65,19 @@ export default function ZoomNodes() {
 
         <Svg ref={svgRef}>
           <NodesContainer
-            circles={circles}
+            activeNode={activeNode}
+            nodes={nodes}
             currentZoomState={currentZoomState}
           />
-          <TooltipContainer hoveredCircle={hoveredCircle} />
-          <EventsNodesContainer
-            circles={circles}
-            currentZoomState={currentZoomState}
-            setHoveredCircle={setHoveredCircle}
-          />
+          <TooltipContainer hoveredNode={hoveredNode} />
+          {!activeNode ? (
+            <EventsNodesContainer
+              nodes={nodes}
+              currentZoomState={currentZoomState}
+              setHoveredNode={setHoveredNode}
+              setActiveNode={setActiveNode}
+            />
+          ) : null}
         </Svg>
       </Card>
     </Fragment>

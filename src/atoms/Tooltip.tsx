@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
-import Text from './Text';
-import styled from 'styled-components';
+import { Fragment } from "react";
+import Text from "./Text";
+import styled from "styled-components";
 
-interface TTooltip extends React.ComponentPropsWithoutRef<'rect'> {
+interface TTooltip extends React.ComponentPropsWithoutRef<"rect"> {
   info?: string;
 }
 
@@ -64,7 +64,7 @@ const Tooltip = ({ x, y, info }: TTooltip) => {
     <Fragment>
       <StyledRect x={x} y={y} />
       <ForeignObject x={x} y={y}>
-        <Text size={'s'}>{info}</Text>
+        <Text size={"s"}>{info}</Text>
       </ForeignObject>
     </Fragment>
   );

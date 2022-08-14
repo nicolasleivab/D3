@@ -1,6 +1,6 @@
-import { animated, useSpring } from 'react-spring';
+import { animated, useSpring } from "react-spring";
 
-interface TCircle extends React.ComponentPropsWithoutRef<'circle'> {
+interface TCircle extends React.ComponentPropsWithoutRef<"circle"> {
   radius: number;
   color: string;
   x: number;

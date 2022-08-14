@@ -1,27 +1,36 @@
-import type { TCircle } from '../../data/generate-circles';
+import type { TNode } from '../../data/generate-nodes';
 import { CircleEvents } from '../../atoms';
 
 type TNodesContainer = {
   currentZoomState: any;
-  circles: TCircle[];
-  setHoveredCircle: (arg0: TCircle | null) => void;
+  nodes: TNode[];
+  setHoveredNode: (arg0: TNode | null) => void;
+  setActiveNode: (arg0: TNode | null) => void;
 };
 
 const EventsNodesContainer = ({
   currentZoomState,
-  circles,
-  setHoveredCircle,
+  nodes,
+  setHoveredNode,
+  setActiveNode,
 }: TNodesContainer) => {
   return (
     <g transform={currentZoomState}>
-      {circles.map(({ x, y, radius, color, info }: TCircle) => {
+      {nodes.map(({ id, x, y, radius, color, info }: TNode) => {
         return (
           <CircleEvents
+            key={id}
             x={x}
             y={y}
             radius={radius}
-            onMouseEnter={() => setHoveredCircle({ x, y, info, radius, color })}
-            onMouseLeave={() => setHoveredCircle(null)}
+            onMouseEnter={() =>
+              setHoveredNode({ id, x, y, radius, color, info })
+            }
+            onMouseLeave={() => setHoveredNode(null)}
+            onClick={() => {
+              setHoveredNode(null);
+              setActiveNode({ id, x, y, radius, color, info });
+            }}
           />
         );
       })}

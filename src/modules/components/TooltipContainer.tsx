@@ -1,19 +1,11 @@
-import { Tooltip } from '../../atoms';
-import { TCircle } from '../../data/generate-circles';
+import { Tooltip } from "../../atoms";
+import { TNode } from "../../data/generate-nodes";
 
-const TooltipContainer = ({
-  hoveredCircle,
-}: {
-  hoveredCircle: TCircle | null;
-}) => {
+const TooltipContainer = ({ hoveredNode }: { hoveredNode: TNode | null }) => {
   return (
     <g>
-      {hoveredCircle ? (
-        <Tooltip
-          x={hoveredCircle.x}
-          y={hoveredCircle.y}
-          info={hoveredCircle.info}
-        />
+      {hoveredNode ? (
+        <Tooltip x={hoveredNode.x} y={hoveredNode.y} info={hoveredNode.info} />
       ) : null}
     </g>
   );

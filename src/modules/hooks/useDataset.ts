@@ -1,16 +1,16 @@
-import {useState, useMemo, useCallback} from 'react'
-import { generateCircles } from '../../data/generate-circles'
+import { useState, useMemo, useCallback } from "react";
+import { generateNodes } from "../../data/generate-nodes";
 
-const useDataset = ({datasets}: {datasets: string[]}) => {
-    const [activeDataset, setActiveDataset] = useState(datasets[0])
+const useDataset = ({ datasets }: { datasets: string[] }) => {
+  const [activeDataset, setActiveDataset] = useState(datasets[0]);
 
-    const circles = useMemo(() => generateCircles(activeDataset), [activeDataset]);
-    
-    const onButtonClick = useCallback((id: string) => {
-        setActiveDataset(id);
-    }, []);
+  const nodes = useMemo(() => generateNodes(activeDataset), [activeDataset]);
 
-  return {circles, activeDataset, onButtonClick}
-}
+  const onButtonClick = useCallback((id: string) => {
+    setActiveDataset(id);
+  }, []);
+
+  return { nodes, activeDataset, onButtonClick };
+};
 
 export default useDataset;

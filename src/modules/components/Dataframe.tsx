@@ -16,7 +16,7 @@ const Dataframe = ({ datasets, activeDataSet, title, onClick }: TDataframe) => {
       </Block>
       {datasets.map((dataset) => {
         return (
-          <Block>
+          <Block key={dataset}>
             <Button
               buttonType={activeDataSet === dataset ? 'secondary' : 'primary'}
               onClick={() => onClick(dataset)}

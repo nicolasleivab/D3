@@ -11,6 +11,7 @@ interface TButton extends React.ComponentPropsWithRef<'button'> {
 }
 
 const StyledButton = styled.button<TButton>`
+  cursor: pointer;
   background-color: ${({
     theme: {
       colors: { background, highlight },

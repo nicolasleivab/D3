@@ -1,5 +1,1 @@
-export const datasets = [
-    '1',
-    '2',
-    '3'
-]
+export const datasets = ["1", "2", "3"];
