@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import HeaderComponent from "../modules/Header/Header";
 import { Flex, Block } from "../layout";
+import { Footer } from "../atoms";
 import ZoomNodes from "../modules/ZoomNodes/ZoomNodes";
 import ForceSimulation from "../modules/ForceSimulation/ForceSimulation";
 import { baseCSS } from "../styles/base";
@@ -24,6 +25,9 @@ export default function App() {
           <Block width={"50%"}>
             <ForceSimulation />
           </Block>
+        </Flex>
+        <Flex>
+          <Footer />
         </Flex>
       </ThemeProvider>
     </Fragment>

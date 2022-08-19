@@ -20,7 +20,6 @@ const Flex = styled.div<TFlex>`
   flex-direction: ${({ flexDirection }) => flexDirection || "row"};
   justify-content: ${({ justifyContent }) => justifyContent || "center"};
   align-items: ${({ alignItems }) => alignItems || "center"};
-  flex-wrap: wrap;
 `;
 
 export default Flex;

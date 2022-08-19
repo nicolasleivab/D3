@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import type { TSize } from "../styles/types";
 
@@ -6,7 +6,7 @@ type TButtonType = "primary" | "secondary";
 
 interface TButton extends React.ComponentPropsWithRef<"button"> {
   buttonType?: TButtonType;
-  onClick?: (arg: any) => void;
+  onClick?: () => void;
   borderRadius?: TSize;
 }
 
@@ -17,7 +17,7 @@ const StyledButton = styled.button<TButton>`
       colors: { background, highlight },
     },
     buttonType,
-  }) => (buttonType === "primary" ? background : highlight)};
+  }) => (buttonType === "secondary" ? highlight : background)};
   color: ${({
     theme: {
       colors: { foreground },
@@ -44,22 +44,4 @@ const StyledButton = styled.button<TButton>`
   }
 `;
 
-const Button = forwardRef(
-  (
-    { children, buttonType = "primary", onClick, borderRadius }: TButton,
-    ref: any
-  ) => {
-    return (
-      <StyledButton
-        buttonType={buttonType}
-        ref={ref}
-        onClick={onClick}
-        borderRadius={borderRadius}
-      >
-        {children}
-      </StyledButton>
-    );
-  }
-);
-
-export default Button;
+export default StyledButton;

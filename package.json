@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/d3-drag": "^3.0.1",
+    "@types/d3-force": "^3.0.3",
+    "@types/d3-transition": "^3.0.2",
     "@types/d3-zoom": "^3.0.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
@@ -13,7 +16,10 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/styled-components": "^5.1.26",
+    "d3-drag": "^3.0.0",
+    "d3-force": "^3.0.0",
     "d3-selection": "^3.0.0",
+    "d3-transition": "^3.0.1",
     "d3-zoom": "^3.0.0",
     "random-seed": "^0.3.0",
     "react": "^18.2.0",
@@ -47,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest-styled-components": "^7.1.0"
   }
 }

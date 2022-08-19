@@ -1,8 +1,9 @@
-import type { TNode } from '../../data/types';
-import { CircleEvents } from '../../atoms';
+import type { TNode } from "../../data/types";
+import { CircleEvents } from "../../atoms";
+import type { ZoomTransform } from "d3-zoom";
 
 type TNodesContainer = {
-  currentZoomState: any;
+  currentZoomState: ZoomTransform;
   nodes: TNode[];
   setHoveredNode: (arg0: TNode | null) => void;
   setActiveNode: (arg0: TNode | null) => void;
@@ -15,7 +16,7 @@ const EventsNodesContainer = ({
   setActiveNode,
 }: TNodesContainer) => {
   return (
-    <g transform={currentZoomState}>
+    <g transform={currentZoomState?.toString()}>
       {nodes.map(({ id, x, y, radius, color, info, subNodes }: TNode) => {
         return (
           <CircleEvents

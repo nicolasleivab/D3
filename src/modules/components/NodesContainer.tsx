@@ -1,14 +1,15 @@
-import { useMemo } from 'react';
-import type { TNode, TSubNode } from '../../data/types';
-import { getFilteredNodes } from '../data-handlers.ts/get-filtered-nodes';
-import { Circle } from '../../atoms';
-import SubNodesContainer from './SubNodesContainer';
+import { useMemo } from "react";
+import type { TNode, TSubNode } from "../../data/types";
+import { getFilteredNodes } from "../data-handlers.ts/get-filtered-nodes";
+import { Circle } from "../../atoms";
+import SubNodesContainer from "./SubNodesContainer";
+import type { ZoomTransform } from "d3-zoom";
 
 type TNodesContainer = {
   activeNode: TNode | null;
   activeSubNode: TSubNode | null;
   setActiveSubNode: (arg0: TSubNode | null) => void;
-  currentZoomState: any;
+  currentZoomState: ZoomTransform;
   nodes: TNode[];
   wrapperRef: any;
 };
@@ -34,7 +35,7 @@ const NodesContainer = ({
   );
 
   return (
-    <g transform={currentZoomState}>
+    <g transform={currentZoomState?.toString()}>
       {filteredNodes.map(({ id, x, y, color, radius }: TNode) => {
         return <Circle key={id} x={x} y={y} radius={radius} color={color} />;
       })}

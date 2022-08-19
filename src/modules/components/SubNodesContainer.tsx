@@ -1,7 +1,7 @@
-import { useMemo, Fragment } from 'react';
-import type { TSubNode } from '../../data/types';
-import { getFilteredSubNodes } from '../data-handlers.ts/get-filtered-sub-nodes';
-import { Rect } from '../../atoms';
+import { useMemo, Fragment } from "react";
+import type { TSubNode } from "../../data/types";
+import { getFilteredSubNodes } from "../data-handlers.ts/get-filtered-sub-nodes";
+import { Rect } from "../../atoms";
 
 type TNodesContainer = {
   subNodes: TSubNode[];

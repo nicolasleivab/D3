@@ -30,11 +30,11 @@ export const generateNodes = (seed: string): TNode[] => {
         const subR = rand.intBetween(0, 255);
         const subG = rand.intBetween(0, 255);
         const subB = rand.intBetween(0, 255);
-    
+
         const subId = `${subR}${subG}${subB}`;
 
         const subX = rand.intBetween(x, radius);
-        const subY = rand.intBetween(y, radius)
+        const subY = rand.intBetween(y, radius);
 
         return {
           id: subId,
@@ -42,8 +42,8 @@ export const generateNodes = (seed: string): TNode[] => {
           x: subX,
           y: subY,
           color: `rgb(${subR},${subG},${subB})`,
-        }
-      })
+        };
+      }),
     };
   });
 

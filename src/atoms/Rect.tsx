@@ -1,7 +1,7 @@
-import { animated, useSpring } from 'react-spring';
-import type { MouseEventHandler } from 'react';
+import { animated, useSpring } from "react-spring";
+import type { MouseEventHandler } from "react";
 
-interface TRect extends React.ComponentPropsWithoutRef<'rect'> {
+interface TRect extends React.ComponentPropsWithoutRef<"rect"> {
   id: string;
   width: number;
   color: string;
@@ -16,7 +16,7 @@ export default function Rect({ width, color, x, y, onClick }: TRect) {
     y,
     width,
     color,
-    from: { x: 0, y: 0, width: 1, color },
+    from: { x, y, width: 1, color },
   });
 
   return (
@@ -27,7 +27,7 @@ export default function Rect({ width, color, x, y, onClick }: TRect) {
       x={useAnimation.x}
       y={useAnimation.y}
       onClick={onClick}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     />
   );
 }

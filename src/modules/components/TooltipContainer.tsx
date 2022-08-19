@@ -1,5 +1,6 @@
-import { Tooltip } from '../../atoms';
-import { TNode } from '../../data/types';
+import { Tooltip } from "../../atoms";
+import { TNode } from "../../data/types";
+import type { ZoomTransform } from "d3-zoom";
 
 const MAX_SIZE = 250;
 
@@ -16,7 +17,7 @@ const TooltipContainer = ({
   wrapperRef,
 }: {
   hoveredNode: TNode | null;
-  currentZoomState: any;
+  currentZoomState: ZoomTransform;
   wrapperRef: any;
 }) => {
   const dimensions =
