@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { RefObject, useMemo } from "react";
 import type { TNode, TSubNode } from "../../data/types";
 import { getFilteredNodes } from "../data-handlers.ts/get-filtered-nodes";
 import { Circle } from "../../atoms";
@@ -11,7 +11,7 @@ type TNodesContainer = {
   setActiveSubNode: (arg0: TSubNode | null) => void;
   currentZoomState: ZoomTransform;
   nodes: TNode[];
-  wrapperRef: any;
+  wrapperRef: RefObject<HTMLDivElement>;
 };
 
 const NodesContainer = ({

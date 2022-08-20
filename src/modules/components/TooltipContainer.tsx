@@ -1,6 +1,7 @@
 import { Tooltip } from "../../atoms";
 import { TNode } from "../../data/types";
 import type { ZoomTransform } from "d3-zoom";
+import { RefObject } from "react";
 
 const MAX_SIZE = 250;
 
@@ -18,12 +19,9 @@ const TooltipContainer = ({
 }: {
   hoveredNode: TNode | null;
   currentZoomState: ZoomTransform;
-  wrapperRef: any;
+  wrapperRef: RefObject<HTMLDivElement>;
 }) => {
-  const dimensions =
-    wrapperRef &&
-    wrapperRef.current &&
-    wrapperRef.current.getBoundingClientRect();
+  const dimensions = wrapperRef?.current?.getBoundingClientRect();
 
   const zoomFactor = currentZoomState ? currentZoomState.k : 1;
   const deltaX = currentZoomState ? currentZoomState.x : 0;
@@ -35,11 +33,11 @@ const TooltipContainer = ({
         <Tooltip
           x={getTooltipCoor(
             zoomFactor * hoveredNode.x + deltaX,
-            dimensions.width
+            dimensions!.width
           )}
           y={getTooltipCoor(
             zoomFactor * hoveredNode.y + deltaY,
-            dimensions.height
+            dimensions!.height
           )}
           info={hoveredNode.info}
         />

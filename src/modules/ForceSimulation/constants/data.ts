@@ -1,21 +1,3 @@
-import { SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
-
-export type TNode = {
-  name: string;
-  group: number;
-  r: number;
-  g: number;
-};
-
-export type TLink = {
-  source: number;
-  target: number;
-  value: number;
-};
-
-export type TNodeDatum = SimulationNodeDatum;
-export type TLinkDatum = SimulationLinkDatum<any>;
-
 export const data: any = {
   nodes: [
     { name: "Planet0", group: 0, r: 27, g: 0 },

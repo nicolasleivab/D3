@@ -1,4 +1,4 @@
-import { useRef, useState, Fragment } from "react";
+import { useRef, useState, Fragment, RefObject } from "react";
 import { Card, Svg, Flex } from "../../layout";
 import { Button, Text } from "../../atoms";
 import { datasets } from "./constants";
@@ -12,9 +12,9 @@ import type { TSubNode } from "../../data/types";
 import useZoomBehaviour from "../hooks/useZoomBehaviour";
 
 export default function ZoomNodes() {
-  const svgRef = useRef<any>(null);
-  const wrapperRef = useRef<any>(null);
-  const buttonRef = useRef<any>(null);
+  const svgRef = useRef(null) as RefObject<SVGSVGElement>;
+  const wrapperRef = useRef(null) as RefObject<HTMLDivElement>;
+  const buttonRef = useRef(null) as RefObject<HTMLButtonElement>;
 
   const [hoveredNode, setHoveredNode] = useState<TNode | null>(null);
   const [activeNode, setActiveNode] = useState<TNode | null>(null);
