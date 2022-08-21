@@ -1,6 +1,7 @@
 import { Fragment } from "react";
-import Text from "./Text";
 import styled from "styled-components";
+import { theme } from "../styles/theme";
+import SplitText from "./utils/SplitText";
 
 interface TTooltip extends React.ComponentPropsWithoutRef<"rect"> {
   info?: string;
@@ -17,11 +18,6 @@ const StyledRect = styled.rect<TTooltip>`
       tooltip: { stroke },
     },
   }) => stroke};
-  rx: ${({
-    theme: {
-      tooltip: { radius },
-    },
-  }) => radius};
   width: ${({
     theme: {
       tooltip: { width },
@@ -34,38 +30,15 @@ const StyledRect = styled.rect<TTooltip>`
   }) => height};
 `;
 
-const ForeignObject = styled.foreignObject`
-  x: ${({
-    theme: {
-      tooltip: { margin },
-    },
-    x,
-  }) => x + margin};
-  y: ${({
-    theme: {
-      tooltip: { margin },
-    },
-    y,
-  }) => y + margin};
-  width: ${({
-    theme: {
-      tooltip: { innerWidth },
-    },
-  }) => innerWidth};
-  height: ${({
-    theme: {
-      tooltip: { height },
-    },
-  }) => height};
-`;
+const {
+  tooltip: { radius },
+} = theme;
 
 const Tooltip = ({ x, y, info }: TTooltip) => {
   return (
     <Fragment>
-      <StyledRect x={x} y={y} />
-      <ForeignObject x={x} y={y}>
-        <Text size={"s"}>{info}</Text>
-      </ForeignObject>
+      <StyledRect x={x} y={y} rx={radius} />
+      <SplitText text={info!} x={Number(x)} y={Number(y)} />
     </Fragment>
   );
 };

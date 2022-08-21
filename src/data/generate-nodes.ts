@@ -25,7 +25,7 @@ export const generateNodes = (seed: string): TNode[] => {
       radius,
       x,
       y,
-      info: `Hi, I am node number ${id}. I'm located at coordinates ${x}, ${y}.`,
+      info: `Hi, I am node number ${id}. I am located at coordinates ${x}, ${y}.`,
       subNodes: [...Array(numberOfSubNodes)].map((_subNode) => {
         const subR = rand.intBetween(0, 255);
         const subG = rand.intBetween(0, 255);
