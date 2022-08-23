@@ -1,12 +1,12 @@
-import { Fragment } from "react";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import HeaderComponent from "../modules/Header/Header";
-import { Flex, Block } from "../layout";
-import { Footer } from "../atoms";
-import ZoomNodes from "../modules/ZoomNodes/ZoomNodes";
-import ForceSimulation from "../modules/ForceSimulation/ForceSimulation";
-import { baseCSS } from "../styles/base";
-import { theme } from "../styles/theme";
+import { Fragment } from 'react';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import HeaderComponent from '../modules/Header/Header';
+import { Flex } from '../layout';
+import { Footer } from '../atoms';
+import ForceSimulation from './containers/ForceSimulation';
+import { baseCSS } from '../styles/base';
+import { theme } from '../styles/theme';
+import NodesContainer from './containers/ZoomNodes';
 
 const GlobalStyle = createGlobalStyle`
   ${baseCSS}
@@ -19,12 +19,8 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <HeaderComponent />
         <Flex flexDirection="column">
-          <Block width={"50%"}>
-            <ZoomNodes />
-          </Block>
-          <Block width={"50%"}>
-            <ForceSimulation />
-          </Block>
+          <NodesContainer />
+          <ForceSimulation />
         </Flex>
         <Flex>
           <Footer />

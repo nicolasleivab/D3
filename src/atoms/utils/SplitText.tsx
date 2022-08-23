@@ -41,8 +41,8 @@ export default function SplitText({
   return (
     <StyledText x={x} y={y}>
       {" "}
-      {sentences?.map((sentence) => (
-        <tspan x={x + margin} dy={margin}>
+      {sentences?.map((sentence, index) => (
+        <tspan key={sentence + index} x={x + margin} dy={margin}>
           {sentence}
         </tspan>
       ))}
