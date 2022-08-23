@@ -20,7 +20,7 @@ export default function App() {
         <HeaderComponent />
         <Flex flexDirection="column">
           <NodesContainer />
-          <ForceSimulation />
+          {/* <ForceSimulation /> */}
         </Flex>
         <Flex>
           <Footer />

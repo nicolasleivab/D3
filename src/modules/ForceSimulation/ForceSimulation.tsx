@@ -27,6 +27,7 @@ export default function ForceSimulation({ currentStrength }: any) {
     buttonRef,
     activeNode: null,
     onZoomReset: () => null,
+    wrapperRef,
   });
 
   useEffect(() => {

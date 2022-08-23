@@ -8,14 +8,17 @@ import type { TSvgSelection, TZoomBehaviour } from "../types";
 type TUseZoom = {
   svgRef: RefObject<SVGSVGElement>;
   buttonRef: RefObject<HTMLButtonElement>;
+  wrapperRef: any;
   activeNode: TNode | null;
   onZoomReset: () => void;
 };
+const SCALE_RATIO = 100;
 
 export default function useZoomBehaviour({
   svgRef,
   buttonRef,
   activeNode,
+  wrapperRef,
   onZoomReset,
 }: TUseZoom) {
   const [currentZoomState, setCurrentZoomState] = useState<ZoomTransform>();
@@ -26,10 +29,7 @@ export default function useZoomBehaviour({
     const zoomBehavior: TZoomBehaviour = zoom()
       .filter((event: any) => {
         if (event.type === "wheel") {
-          return event.ctrlKey && Boolean(!activeNode);
-        }
-        if (event.type === "dblclick" || event.type === "mousedown") {
-          return Boolean(!activeNode);
+          return event.ctrlKey;
         }
 
         return true;
@@ -46,8 +46,17 @@ export default function useZoomBehaviour({
       svg.transition().duration(350).call(zoomBehavior.transform, zoomIdentity);
       onZoomReset();
     };
+    const dimensions = wrapperRef?.current?.getBoundingClientRect();
+  
+    if(activeNode){
+      const scale = SCALE_RATIO/activeNode.radius
+      svg.transition().duration(350).call(zoomBehavior.transform, zoomIdentity.translate(-scale*activeNode.x + dimensions.width/2, -scale*activeNode.y + dimensions.height/2).scale(scale));
+    }
+
     buttonRef.current!.onclick = resetZoom;
-  }, [svgRef, buttonRef, activeNode, onZoomReset]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeNode]);
 
   return { currentZoomState };
 }

@@ -1,15 +1,20 @@
-import { useRef, useState, Fragment, RefObject, useEffect } from "react";
-import { Card, Svg, Flex } from "../../layout";
-import { Button, Text } from "../../atoms";
-import NodesContainer from "../components/NodesContainer";
-import EventsNodesContainer from "../components/EventsNodesContainer";
-import TooltipContainer from "../components/TooltipContainer";
-import type { TNode, TSubNode } from "../../data/types";
-import useZoomBehaviour from "../hooks/useZoomBehaviour";
+import {
+  useRef,
+  useState,
+  Fragment,
+  RefObject,
+  useEffect,
+  useCallback,
+} from 'react';
+import { Card, Svg, Flex } from '../../layout';
+import { Button, Circle, Text } from '../../atoms';
+import NodesContainer from '../components/NodesContainer';
+import EventsNodesContainer from '../components/EventsNodesContainer';
+import TooltipContainer from '../components/TooltipContainer';
+import type { TNode, TSubNode } from '../../data/types';
+import useZoomBehaviour from '../hooks/useZoomBehaviour';
 
-export default function ZoomNodes({
-  nodes,
-}: any) {
+export default function ZoomNodes({ nodes }: any) {
   const svgRef = useRef(null) as RefObject<SVGSVGElement>;
   const wrapperRef = useRef(null) as RefObject<HTMLDivElement>;
   const buttonRef = useRef(null) as RefObject<HTMLButtonElement>;
@@ -26,7 +31,7 @@ export default function ZoomNodes({
 
   useEffect(() => {
     onZoomReset();
-    setActiveNodes([...nodes])
+    setActiveNodes([...nodes]);
   }, [nodes]);
 
   const { currentZoomState } = useZoomBehaviour({
@@ -34,45 +39,60 @@ export default function ZoomNodes({
     buttonRef,
     activeNode,
     onZoomReset,
+    wrapperRef,
   });
-
 
   return (
     <Fragment>
       <Card ref={wrapperRef}>
         <Flex justifyContent="space-between">
           <Text size="s">
-            {Boolean(activeNode)
-              ? `Zoom disabled. Click${
-                  Boolean(activeSubNode) ? "" : " sub nodes or"
-                } Zoom to Extent.`
-              : "Activate scroll zoom with ctrl + scroll"}
+            {activeNode ? `Node ${activeNode.id} is active` : ''}
           </Text>
           <Button ref={buttonRef}>Zoom to Extent</Button>
         </Flex>
 
         <Svg ref={svgRef}>
-          <NodesContainer
-            wrapperRef={wrapperRef}
-            activeNode={activeNode}
-            activeSubNode={activeSubNode}
-            setActiveSubNode={setActiveSubNode}
-            nodes={activeNodes}
-            currentZoomState={currentZoomState!}
-          />
-          <TooltipContainer
-            hoveredNode={hoveredNode}
-            currentZoomState={currentZoomState!}
-            wrapperRef={wrapperRef}
-          />
-          {!activeNode ? (
-            <EventsNodesContainer
-              nodes={activeNodes}
-              currentZoomState={currentZoomState!}
-              setHoveredNode={setHoveredNode}
-              setActiveNode={setActiveNode}
+          <g transform={currentZoomState?.toString()}>
+            <Circle
+              x={10}
+              y={10}
+              radius={40}
+              color="#000"
+              onClick={useCallback(
+                () =>
+                  setActiveNode({
+                    id: '1',
+                    color: '#000',
+                    radius: 40,
+                    x: 10,
+                    y: 10,
+                    info: 'ad',
+                    subNodes: [],
+                  }),
+                [],
+              )}
             />
-          ) : null}
+            <Circle
+              x={25}
+              y={100}
+              radius={10}
+              color="#000"
+              onClick={useCallback(
+                () =>
+                  setActiveNode({
+                    id: '2',
+                    color: '#CCC',
+                    radius: 10,
+                    x: 25,
+                    y: 100,
+                    info: 'ad',
+                    subNodes: [],
+                  }),
+                [],
+              )}
+            />
+          </g>
         </Svg>
       </Card>
     </Fragment>
