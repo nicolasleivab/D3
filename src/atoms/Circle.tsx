@@ -7,10 +7,11 @@ interface TCircle extends React.ComponentPropsWithRef<'circle'> {
   x: number;
   y: number;
   onClick?: () => void;
+  onKeyDown?: React.KeyboardEventHandler<SVGCircleElement>;
 }
 
 const Circle = forwardRef(
-  ({ radius, color, x, y, onClick }: TCircle, ref: any) => {
+  ({ radius, color, x, y, onClick, onKeyDown }: TCircle, ref: any) => {
     const useAnimation = useSpring({
       x,
       y,
@@ -21,12 +22,15 @@ const Circle = forwardRef(
 
     return (
       <animated.circle
+        tabIndex={1}
+        focusable
         ref={ref}
         r={useAnimation.radius}
         fill={useAnimation.color}
         cx={useAnimation.x}
         cy={useAnimation.y}
         onClick={onClick}
+        onKeyDown={onKeyDown}
       />
     );
   },

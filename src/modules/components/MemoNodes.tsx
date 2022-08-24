@@ -28,7 +28,14 @@ function MemoNode({
     [id, color, radius, x, y, info, subNodes, setActiveNode],
   );
   return (
-    <Circle x={x} y={y} radius={radius} color={color} onClick={onCircleClick} />
+    <Circle
+      x={x}
+      y={y}
+      radius={radius}
+      color={color}
+      onClick={onCircleClick}
+      onKeyDown={e => (e.key === 'Enter' ? onCircleClick() : null)}
+    />
   );
 }
 
