@@ -1,4 +1,4 @@
-import { memo, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { animated, useSpring } from 'react-spring';
 
 interface TCircle extends React.ComponentPropsWithRef<'circle'> {
@@ -32,4 +32,4 @@ const Circle = forwardRef(
   },
 );
 
-export default memo(Circle);
+export default Circle;
