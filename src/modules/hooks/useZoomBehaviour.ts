@@ -12,7 +12,6 @@ type TUseZoom = {
   activeNode: TNode | null;
   onZoomReset: () => void;
 };
-const SCALE_RATIO = 100;
 
 export default function useZoomBehaviour({
   svgRef,

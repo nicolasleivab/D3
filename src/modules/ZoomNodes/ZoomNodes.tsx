@@ -52,7 +52,7 @@ export default function ZoomNodes({ nodes }: any) {
           </Text>
           <Button ref={buttonRef}>Zoom to Extent</Button>
         </Flex>
-        <div ref={wrapperRef}>
+        <div ref={wrapperRef} style={{ height: 500 }}>
           <Svg ref={svgRef}>
             <g transform={currentZoomState?.toString()}>
               {nodes.map(
