@@ -47,9 +47,7 @@ export default function ZoomNodes({ nodes }: any) {
     <Fragment>
       <Card>
         <Flex justifyContent="space-between">
-          <Text size="s">
-            {activeNode ? `Node ${activeNode.id} is active` : ''}
-          </Text>
+          <Text size="s">{activeNode ? activeNode.info : ''}</Text>
           <Button ref={buttonRef}>Zoom to Extent</Button>
         </Flex>
         <div ref={wrapperRef} style={{ height: 500 }}>

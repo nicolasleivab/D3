@@ -103,14 +103,16 @@ export default function ForceSimulation({ currentStrength }: any) {
 
   return (
     <Fragment>
-      <Card ref={wrapperRef}>
+      <Card>
         <Flex justifyContent="space-between">
           <Text size="s">Activate scroll zoom with ctrl + scroll</Text>
           <Button ref={buttonRef}>Zoom to Extent</Button>
         </Flex>
-        <Svg ref={svgRef}>
-          <g ref={containerRef} transform={currentZoomState?.toString()}></g>
-        </Svg>
+        <div ref={wrapperRef} style={{ height: 500 }}>
+          <Svg ref={svgRef}>
+            <g ref={containerRef} transform={currentZoomState?.toString()}></g>
+          </Svg>
+        </div>
       </Card>
     </Fragment>
   );
