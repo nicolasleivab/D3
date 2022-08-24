@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-interface TCard extends React.ComponentPropsWithRef<"div"> {}
+interface TCard extends React.ComponentPropsWithRef<'div'> {}
 
 const Card = styled.div<TCard>`
   box-shadow: ${({

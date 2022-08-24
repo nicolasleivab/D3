@@ -45,64 +45,35 @@ export default function ZoomNodes({ nodes }: any) {
 
   return (
     <Fragment>
-      <Card ref={wrapperRef}>
+      <Card>
         <Flex justifyContent="space-between">
           <Text size="s">
             {activeNode ? `Node ${activeNode.id} is active` : ''}
           </Text>
           <Button ref={buttonRef}>Zoom to Extent</Button>
         </Flex>
-
-        <Svg ref={svgRef}>
-          <g transform={currentZoomState?.toString()}>
-            {nodes.map(({ id, x, y, radius, color, info, subNodes }: TNode) => (
-              <MemoNodes
-                id={id}
-                x={x}
-                y={y}
-                radius={radius}
-                color={color}
-                info={info}
-                subNodes={subNodes}
-                setActiveNode={setActiveNode}
-              />
-            ))}
-          </g>
-        </Svg>
+        <div ref={wrapperRef}>
+          <Svg ref={svgRef}>
+            <g transform={currentZoomState?.toString()}>
+              {nodes.map(
+                ({ id, x, y, radius, color, info, subNodes }: TNode) => (
+                  <MemoNodes
+                    key={id}
+                    id={id}
+                    x={x}
+                    y={y}
+                    radius={radius}
+                    color={color}
+                    info={info}
+                    subNodes={subNodes}
+                    setActiveNode={setActiveNode}
+                  />
+                ),
+              )}
+            </g>
+          </Svg>
+        </div>
       </Card>
     </Fragment>
   );
 }
-
-// function MemoNode({
-//   id,
-//   x,
-//   y,
-//   radius,
-//   color,
-//   info,
-//   subNodes,
-//   setActiveNode,
-// }: any) {
-//   return (
-//     <Circle
-//       x={x}
-//       y={y}
-//       radius={radius}
-//       color={color}
-//       onClick={useCallback(
-//         () =>
-//           setActiveNode({
-//             id,
-//             color,
-//             radius,
-//             x,
-//             y,
-//             info,
-//             subNodes,
-//           }),
-//         [id, color, radius, x, y, info, subNodes, setActiveNode],
-//       )}
-//     />
-//   );
-// }

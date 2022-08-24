@@ -46,11 +46,11 @@ export default function useZoomBehaviour({
       svg.transition().duration(350).call(zoomBehavior.transform, zoomIdentity);
       onZoomReset();
     };
-    const dimensions = wrapperRef?.current?.getBoundingClientRect();
+    const {width, height} = wrapperRef?.current?.getBoundingClientRect();
   
     if(activeNode){
-      const scale = SCALE_RATIO/activeNode.radius
-      svg.transition().duration(350).call(zoomBehavior.transform, zoomIdentity.translate(-scale*activeNode.x + dimensions.width/2, -scale*activeNode.y + dimensions.height/2).scale(scale));
+      const scale = width < height ? width/activeNode.radius/2 : height/activeNode.radius/2
+      svg.transition().duration(350).call(zoomBehavior.transform, zoomIdentity.translate(-scale*activeNode.x + width/2, -scale*activeNode.y + height/2).scale(scale));
     }
 
     buttonRef.current!.onclick = resetZoom;
