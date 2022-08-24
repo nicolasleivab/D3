@@ -2,7 +2,10 @@ import { useCallback, memo } from 'react';
 import { Circle } from '../../atoms';
 import { TNode } from '../../data/types';
 
-type TMemoNode = TNode & { setActiveNode: (arg0: TNode | null) => void };
+type TMemoNode = TNode & {
+  setActiveNode: (arg0: TNode | null) => void;
+  tabIndex: number;
+};
 
 function MemoNode({
   id,
@@ -13,6 +16,7 @@ function MemoNode({
   info,
   subNodes,
   setActiveNode,
+  tabIndex,
 }: TMemoNode) {
   const onCircleClick = useCallback(
     () =>
@@ -29,6 +33,7 @@ function MemoNode({
   );
   return (
     <Circle
+      tabIndex={tabIndex}
       x={x}
       y={y}
       radius={radius}

@@ -56,6 +56,7 @@ export default function ZoomNodes({ nodes }: any) {
               {nodes.map(
                 ({ id, x, y, radius, color, info, subNodes }: TNode) => (
                   <MemoNodes
+                    tabIndex={getTabIndex(activeNode!, id)}
                     key={id}
                     id={id}
                     x={x}
@@ -74,4 +75,11 @@ export default function ZoomNodes({ nodes }: any) {
       </Card>
     </Fragment>
   );
+}
+
+function getTabIndex(activeNode: TNode, id: string): number {
+  if (!activeNode) {
+    return 0;
+  }
+  return activeNode.id === id ? 0 : -1;
 }
