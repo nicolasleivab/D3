@@ -6,6 +6,7 @@ import {
   useEffect,
   useCallback,
 } from 'react';
+import MemoNodes from '../components/MemoNodes';
 import { Card, Svg, Flex } from '../../layout';
 import { Button, Circle, Text } from '../../atoms';
 import NodesContainer from '../components/NodesContainer';
@@ -54,47 +55,54 @@ export default function ZoomNodes({ nodes }: any) {
 
         <Svg ref={svgRef}>
           <g transform={currentZoomState?.toString()}>
-            <Circle
-              x={10}
-              y={10}
-              radius={40}
-              color="#000"
-              onClick={useCallback(
-                () =>
-                  setActiveNode({
-                    id: '1',
-                    color: '#000',
-                    radius: 40,
-                    x: 10,
-                    y: 10,
-                    info: 'ad',
-                    subNodes: [],
-                  }),
-                [],
-              )}
-            />
-            <Circle
-              x={25}
-              y={100}
-              radius={10}
-              color="#000"
-              onClick={useCallback(
-                () =>
-                  setActiveNode({
-                    id: '2',
-                    color: '#CCC',
-                    radius: 10,
-                    x: 25,
-                    y: 100,
-                    info: 'ad',
-                    subNodes: [],
-                  }),
-                [],
-              )}
-            />
+            {nodes.map(({ id, x, y, radius, color, info, subNodes }: TNode) => (
+              <MemoNodes
+                id={id}
+                x={x}
+                y={y}
+                radius={radius}
+                color={color}
+                info={info}
+                subNodes={subNodes}
+                setActiveNode={setActiveNode}
+              />
+            ))}
           </g>
         </Svg>
       </Card>
     </Fragment>
   );
 }
+
+// function MemoNode({
+//   id,
+//   x,
+//   y,
+//   radius,
+//   color,
+//   info,
+//   subNodes,
+//   setActiveNode,
+// }: any) {
+//   return (
+//     <Circle
+//       x={x}
+//       y={y}
+//       radius={radius}
+//       color={color}
+//       onClick={useCallback(
+//         () =>
+//           setActiveNode({
+//             id,
+//             color,
+//             radius,
+//             x,
+//             y,
+//             info,
+//             subNodes,
+//           }),
+//         [id, color, radius, x, y, info, subNodes, setActiveNode],
+//       )}
+//     />
+//   );
+// }
