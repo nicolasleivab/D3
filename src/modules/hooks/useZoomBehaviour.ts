@@ -50,6 +50,8 @@ export default function useZoomBehaviour({
     if(activeNode){
       const scale = width < height ? width/activeNode.radius/2 : height/activeNode.radius/2
       svg.transition().duration(350).call(zoomBehavior.transform, zoomIdentity.translate(-scale*activeNode.x + width/2, -scale*activeNode.y + height/2).scale(scale));
+    } else {
+      resetZoom();
     }
 
     buttonRef.current!.onclick = resetZoom;

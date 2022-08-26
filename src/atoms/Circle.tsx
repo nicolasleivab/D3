@@ -26,7 +26,7 @@ const Circle = forwardRef(
 
     return (
       <animated.circle
-        focusable
+        focusable={!Boolean(tabIndex)}
         tabIndex={tabIndex || 0}
         ref={ref}
         r={useAnimation.radius}
